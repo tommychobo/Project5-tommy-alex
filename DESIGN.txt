@@ -1,0 +1,5 @@
+There were a few methods that I left in the Functions class. First, the adjacent() method could have been placed in the Point class, but I would rather have two point being operated on from a static method rather than one point calling its method on the other.
+getNumFromRange() is a simple function that doesn't need to be instantiated with an object every time it's used. The same is true with clamp().
+I also left the create____() methods in Functions. Since these methods are based on creating an entity object, and they work entirely from a static context, they don't need to be instantiated with an object. They also don't fit well in any of the other classes.
+
+I added some methods to the Point class, these methods could all be referenced from a static context but had a Point object as one input. I put them in the Point class because based on the operation of the method, it felt like the operation was being done to the Point.
