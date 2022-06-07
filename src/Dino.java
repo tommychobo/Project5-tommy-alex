@@ -43,13 +43,12 @@ public class Dino extends Mover {
 	}
 
 	public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-		return true;
+		return false;
 	}
 
 	public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
 
-		Optional<Entity> target =
-			getPosition().findNearest(world, 4);
+		Optional<Entity> target = getPosition().findNearest(world, 4);
 
 		if (target.isPresent()) {
 			Point targetPos = target.get().getPosition();

@@ -8,20 +8,46 @@ public class DinoEgg extends Healthy {
 		(String id,
 		 Point position,
 		 List<PImage> images,
+		 int actionPeriod,
+		 int animationPeriod,
 		 int health,
 		 int healthLimit) {
-		super(id, position, images,0, 0, health, healthLimit); }
+		super(id, position, images, actionPeriod, animationPeriod, health, healthLimit); }
 
 	@Override
 	public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+		setHealth(getHealth()+1);
 
+		if (!transform(world, scheduler, imageStore)) {
+            scheduler.scheduleEvent(this,
+									createActivityAction(world, imageStore),
+									getActionPeriod());
+		}
 	}
 
 	public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
 
-		//Dino dino = new Dino();
+		if (getHealth() <= 0) {
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);
+            return true;  }
 		
-		return true;
-	}
+        else if (getHealth() >= getHealthLimit()) {
+			Dino dino = Factory.createDino("dino_" + getId(),
+										   getPosition(),
+										   Functions.getNumFromRange(WorldModel.DINO_ACTION_MAX, WorldModel.DINO_ACTION_MIN),
+										   Functions.getNumFromRange(WorldModel.DINO_ANIMATION_MAX, WorldModel.DINO_ANIMATION_MIN),
+										   Functions.getNumFromRange(WorldModel.DINO_HEALTH_MAX, WorldModel.DINO_HEALTH_MIN),
+										   imageStore.getImageList(WorldModel.DINO_KEY));
 
+			world.removeEntity(this);
+			scheduler.unscheduleAllEvents(this);
+
+			world.addEntity(tree);
+			tree.scheduleActions(scheduler, world, imageStore);
+
+			return true; }
+		
+        return false;
+	}
 }
