@@ -83,7 +83,7 @@ public final class VirtualWorld extends PApplet
     public void mousePressed() {
         Point pressed = mouseToPoint(mouseX, mouseY);
         System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
-
+        world.setBackground(pressed, new Background("background_dino", imageStore.getImageList("dino_dirt")));
         Optional<Entity> entityOptional = world.getOccupant(pressed);
         if (entityOptional.isPresent())
         {
@@ -154,7 +154,7 @@ public final class VirtualWorld extends PApplet
             Scanner in = new Scanner(new File(filename));
             world.load(in, imageStore);
         }
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e)  {
             System.err.println(e.getMessage());
         }
     }

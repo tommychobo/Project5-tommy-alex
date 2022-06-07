@@ -21,6 +21,7 @@ dirt_vert_right images/dirt_vert_left.png
 dirt_bot_left_corner images/dirt_bot_left_corner.png
 dirt_bot_right_up images/dirt_bot_right_up.png
 dirt_vert_left_bot images/dirt_vert_left_bot.png
+dino_dirt images/dino_dirt.bmp
 bridge images/bridge.png
 tree images/tree0.png
 tree images/tree1.png

@@ -84,6 +84,7 @@ public final class WorldModel
     private int numCols;
     private Background background[][];
     private Entity occupancy[][];
+    private boolean infected[][];
     private Set<Entity> entities;
 
     public WorldModel(int numRows, int numCols, Background defaultBackground) {
@@ -91,6 +92,7 @@ public final class WorldModel
         this.numCols = numCols;
         this.background = new Background[numRows][numCols];
         this.occupancy = new Entity[numRows][numCols];
+        this.infected = new boolean[numRows][numCols];
         this.entities = new HashSet<>();
 
         for (int row = 0; row < numRows; row++) {

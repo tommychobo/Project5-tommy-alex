@@ -14,7 +14,12 @@ public class Dino extends Mover {
 		 int healthLimit) {
 		super(id, position, images, actionPeriod, animationPeriod, health, healthLimit); }
 
-    @Override
+	@Override
+	public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler) {
+		return false;
+	}
+
+	@Override
     public Point nextPosition(WorldModel world, Point destPos)    {
 		
         PathingStrategy pStrat = new AStarPathingStrategy();
