@@ -22,21 +22,21 @@ public abstract class Dude extends Mover{
         Predicate<Point> canPassThrough = (p) -> !(world.isOccupied(p)) || (world.getOccupancyCell(p) instanceof Stump);
         BiPredicate<Point, Point> withinReach = (Point p1, Point p2) -> (Functions.adjacent(p1, p2));
         List<Point> path = pStrat.computePath(this.getPosition(), destPos, canPassThrough, withinReach,
-                PathingStrategy.CARDINAL_NEIGHBORS);
+											  PathingStrategy.CARDINAL_NEIGHBORS);
         return path.isEmpty() ? this.getPosition() : path.get(0);
-//        int horiz = Integer.signum(destPos.x - getPosition().x);
-//        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
-//        //System.out.println((world.getOccupancyCell(newPos) != null) ? world.getOccupancyCell(newPos).getClass() : "null");
-//        if (horiz == 0 || world.isOccupied(newPos) && !(world.getOccupancyCell(newPos) instanceof Stump)) {
-//            int vert = Integer.signum(destPos.y - getPosition().y);
-//            newPos = new Point(getPosition().x, getPosition().y + vert);
-//
-//            if (vert == 0 || world.isOccupied(newPos) &&  !(world.getOccupancyCell(newPos) instanceof Stump)) {
-//                newPos = getPosition();
-//            }
-//        }
-//
-//        return newPos;
+		//        int horiz = Integer.signum(destPos.x - getPosition().x);
+		//        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
+		//        //System.out.println((world.getOccupancyCell(newPos) != null) ? world.getOccupancyCell(newPos).getClass() : "null");
+		//        if (horiz == 0 || world.isOccupied(newPos) && !(world.getOccupancyCell(newPos) instanceof Stump)) {
+		//            int vert = Integer.signum(destPos.y - getPosition().y);
+		//            newPos = new Point(getPosition().x, getPosition().y + vert);
+		//
+		//            if (vert == 0 || world.isOccupied(newPos) &&  !(world.getOccupancyCell(newPos) instanceof Stump)) {
+		//                newPos = getPosition();
+		//            }
+		//        }
+		//
+		//        return newPos;
     }
 
     public int getResourceLimit(){

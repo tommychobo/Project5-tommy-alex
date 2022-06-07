@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Project5-tommy-alex.iml" filepath="$PROJECT_DIR$/Project5-tommy-alex.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sandbox/Sandbox.iml" filepath="$PROJECT_DIR$/Sandbox/Sandbox.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project5-tommy-alex.iml" filepath="$PROJECT_DIR$/project5-tommy-alex.iml" />
     </modules>
   </component>
 </project>
