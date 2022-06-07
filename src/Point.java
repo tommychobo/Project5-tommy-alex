@@ -21,7 +21,7 @@ public final class Point
 
     public boolean equals(Object other) {
         return other instanceof Point && ((Point)other).x == this.x
-                && ((Point)other).y == this.y;
+			&& ((Point)other).y == this.y;
     }
 
     public int hashCode() {
@@ -62,28 +62,33 @@ public final class Point
     public Optional<Entity> findNearest(WorldModel world, int searchCode)
     {
         /*
-        coding is hard.
-        1 = sapling and tree
-        2 = stump
-        3 = house
-         */
+		  coding is hard.
+		  1 = sapling and tree
+		  2 = stump
+		  3 = house
+		  4 = dude
+		*/
         List<Entity> ofType = new LinkedList<>();
         for (Entity entity : world.getEntities()) {
             switch(searchCode) {
-                case 1:
-                    if (entity instanceof Sapling || entity instanceof Tree) {
-                        ofType.add(entity);
-                    }
-                    break;
-                case 2:
-                    if (entity instanceof Stump) {
-                        ofType.add(entity);
-                    }
-                    break;
-                case 3:
-                    if (entity instanceof House) {
-                        ofType.add(entity);
-                    }
+			case 1:
+				if (entity instanceof Sapling || entity instanceof Tree) {
+					ofType.add(entity);
+				}
+				break;
+			case 2:
+				if (entity instanceof Stump) {
+					ofType.add(entity);
+				}
+				break;
+			case 3:
+				if (entity instanceof House) {
+					ofType.add(entity);
+				}
+				break;
+			case 4:
+				if (entity instanceof Dude)
+					ofType.add(entity);
             }
         }
         return nearestEntity(ofType);
