@@ -13,7 +13,10 @@ public class DinoEgg extends Healthy {
 		super(id, position, images, health, healthLimit); }
 
 	public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+
+		Dino dino = new Dino();
 		
+		return true;
 	}
 
 }

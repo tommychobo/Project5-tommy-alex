@@ -21,7 +21,7 @@ public class Dino extends Mover {
 
 		Predicate<Point> canPassThrough = (p) ->
 			!(world.isOccupied(p)) ||
-			(world.getOccupancyCell(p) instanceof Stump) ||
+			(world.getOccupancyCell(p) instanceof Dude) ||
 			(world.getBackgroundCell(p).getImageIndex() > 9 &&
 			 world.getBackgroundCell(p).getImageIndex() < 17);
 
@@ -34,13 +34,24 @@ public class Dino extends Mover {
 			 withinReach,
 			 PathingStrategy.CARDINAL_NEIGHBORS);
 		
-        return path.isEmpty() ? this.getPosition() : path.get(0); }
+        return path.isEmpty() ? this.getPosition() : path.get(0);
+	}
 
 	public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-		
+		return true;
 	}
 
 	public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-		
+
+		Optional<Entity> target =
+			getPosition().findNearest(world, 4);
+
+		if (target.isPresent()) {
+			Point targetPos = target.get().getPosition();
+
+			if (moveTo(target.get(), world, scheduler)) {
+				
+			}
+		}
 	}
 }

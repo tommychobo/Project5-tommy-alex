@@ -7,6 +7,13 @@ obstacle images/water0.png
 grass images/grass.png
 flowers images/flowers.png
 background_default images/none.bmp
+dino_dirt images/dino_dirt.bmp
+dino_dirt_horiz images/dino_dirt_horiz.png
+dino_dirt_vert_left images/dino_dirt_vert_right.png
+dino_dirt_vert_right images/dino_dirt_vert_left.png
+dino_dirt_bot_left_corner images/dino_dirt_bot_left_corner.png
+dino_dirt_bot_right_up images/dino_dirt_bot_right_up.png
+dino_dirt_vert_left_bot images/dino_dirt_vert_left_bot.png
 dirt images/dirt.bmp
 dirt_horiz images/dirt_horiz.png
 dirt_vert_left images/dirt_vert_right.png
