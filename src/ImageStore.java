@@ -24,6 +24,15 @@ public final class ImageStore
         return images.getOrDefault(key, defaultImages);
     }
 
+    public List<PImage> getImageList(String key, int numPixels) {
+        List<PImage> imgs  = images.getOrDefault(key, defaultImages);
+        for(int i = 0; i < imgs.size(); i++){
+            imgs.get(i).resize(0, numPixels);
+        }
+        return imgs;
+    }
+
+
     public void loadImages(
             Scanner in, PApplet screen)
     {

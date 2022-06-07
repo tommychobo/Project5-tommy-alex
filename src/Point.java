@@ -72,7 +72,7 @@ public final class Point
         for (Entity entity : world.getEntities()) {
             switch(searchCode) {
 			case 1:
-				if (entity instanceof Sapling || entity instanceof Tree) {
+				if (/*entity instanceof Sapling || */entity instanceof Tree) {
 					ofType.add(entity);
 				}
 				break;

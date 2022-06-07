@@ -1,6 +1,8 @@
 import processing.core.PImage;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Represents the 2D World in which this simulation is running.
@@ -84,17 +86,18 @@ public final class WorldModel
     private int numCols;
     private Background background[][];
     private Entity occupancy[][];
-    private boolean infected[][];
     private Set<Entity> entities;
+    private DinoInfection infection;
+    private ImageStore imageStore;
 
-    public WorldModel(int numRows, int numCols, Background defaultBackground) {
+    public WorldModel(ImageStore imageStore, int numRows, int numCols, Background defaultBackground) {
+        this.imageStore = imageStore;
         this.numRows = numRows;
         this.numCols = numCols;
         this.background = new Background[numRows][numCols];
         this.occupancy = new Entity[numRows][numCols];
-        this.infected = new boolean[numRows][numCols];
         this.entities = new HashSet<>();
-
+        this.infection = new DinoInfection(this, imageStore);
         for (int row = 0; row < numRows; row++) {
             Arrays.fill(this.background[row], defaultBackground);
         }
@@ -350,6 +353,8 @@ public final class WorldModel
         }
     }
 
+
+
     public Optional<Entity> getOccupant(Point pos) {
         if (isOccupied(pos)) {
             return Optional.of(getOccupancyCell(pos));
@@ -387,5 +392,9 @@ public final class WorldModel
 
     public Set<Entity> getEntities() {
         return entities;
+    }
+
+    public DinoInfection getInfection(){
+        return infection;
     }
 }

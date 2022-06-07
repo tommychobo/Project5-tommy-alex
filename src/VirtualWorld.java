@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Optional;
 
@@ -42,6 +43,7 @@ public final class VirtualWorld extends PApplet
     private WorldView view;
     private EventScheduler scheduler;
 
+
     private long nextTime;
 
     public void settings() {
@@ -55,7 +57,7 @@ public final class VirtualWorld extends PApplet
         this.imageStore = new ImageStore(
                 createImageColored(TILE_WIDTH, TILE_HEIGHT,
                                    DEFAULT_IMAGE_COLOR));
-        this.world = new WorldModel(WORLD_ROWS, WORLD_COLS,
+        this.world = new WorldModel(this.imageStore, WORLD_ROWS, WORLD_COLS,
                                     createDefaultBackground(imageStore));
         this.view = new WorldView(VIEW_ROWS, VIEW_COLS, this, world, TILE_WIDTH,
                                   TILE_HEIGHT);
@@ -67,6 +69,8 @@ public final class VirtualWorld extends PApplet
         scheduleActions(world, scheduler, imageStore);
 
         nextTime = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
+
+
     }
 
     public void draw() {
@@ -83,7 +87,8 @@ public final class VirtualWorld extends PApplet
     public void mousePressed() {
         Point pressed = mouseToPoint(mouseX, mouseY);
         System.out.println("CLICK! " + pressed.x + ", " + pressed.y);
-        world.setBackground(pressed, new Background("background_dino", imageStore.getImageList("dino_dirt")));
+        world.getInfection().motherDinoInfection(scheduler, pressed);
+
         Optional<Entity> entityOptional = world.getOccupant(pressed);
         if (entityOptional.isPresent())
         {

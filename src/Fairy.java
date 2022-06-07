@@ -21,7 +21,9 @@ public final class Fairy extends Mover
     {
         Optional<Entity> fairyTarget =
                 getPosition().findNearest(world, 2);
-
+        if(world.getInfection().isInfected(getPosition())){
+            world.getInfection().uninfect(getPosition());
+        }
         if (fairyTarget.isPresent()) {
             Point tgtPos = fairyTarget.get().getPosition();
 
