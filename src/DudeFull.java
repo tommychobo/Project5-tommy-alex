@@ -21,26 +21,26 @@ public final class DudeFull extends Dude
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
         Optional<Entity> fullTarget =
-                getPosition().findNearest(world, 3);
+			getPosition().findNearest(world, 3);
         if (fullTarget.isPresent() && moveTo(fullTarget.get(), world, scheduler))
-        {
-            this.transform(world, scheduler, imageStore);
+			{
+				this.transform(world, scheduler, imageStore);
 
-        }
+			}
         else {
             scheduler.scheduleEvent(this,
-                    createActivityAction(world, imageStore),
-                    getActionPeriod());
+									createActivityAction(world, imageStore),
+									getActionPeriod());
         }
     }
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)
     {
         DudeNotFull miner = Factory.createDudeNotFull(getId(), //Changed to dudenotfull ??
-                getPosition(), getActionPeriod(),
-                getAnimationPeriod(),
-                getResourceLimit(),
-                getImages());
+													  getPosition(), getActionPeriod(),
+													  getAnimationPeriod(),
+													  getResourceLimit(),
+													  getImages());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
