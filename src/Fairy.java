@@ -19,26 +19,40 @@ public final class Fairy extends Mover
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-        Optional<Entity> fairyTarget =
-                getPosition().findNearest(world, 2);
-        if(world.getInfection().isInfected(getPosition())){
-            world.getInfection().uninfect(getPosition());
-        }
-        if (fairyTarget.isPresent()) {
-            Point tgtPos = fairyTarget.get().getPosition();
+        Optional<Entity> fairyTargetStump =
+			getPosition().findNearest(world, 2);
 
-            if (moveTo(fairyTarget.get(), world, scheduler)) {
+        Optional<Entity> fairyTargetDinoDude =
+			getPosition().findNearest(world, 5); // target DinoDudes
+
+		// if(world.getInfection().isInfected(getPosition())){
+		// world.getInfection().uninfect(getPosition());
+        // }
+
+        if (fairyTargetStump.isPresent()) {
+			Point tgtPos = fairyTargetStump.get().getPosition();
+
+            if (moveTo(fairyTargetStump.get(), world, scheduler)) {
                 Sapling sapling = Factory.createSapling("sapling_" + getId(), tgtPos,
-                        imageStore.getImageList(WorldModel.SAPLING_KEY));
+														imageStore.getImageList(WorldModel.SAPLING_KEY));
 
                 world.addEntity(sapling);
-                sapling.scheduleActions(scheduler, world, imageStore);
-            }
-        }
+                sapling.scheduleActions(scheduler, world, imageStore);   }    }
+
+		if (fairyTargetDinoDude.isPresent() && moveTo(fairyTargetDinoDude.get(), world, scheduler)) {
+			Point tgtPos = fairyTargetDinoDude.get().getPosition();
+
+			// DudeNotFull dude = Factory.createDudeNotFull
+				// ("dude_" + getId(),
+				 // tgtPos,
+				 // imageStore.getImageList(WorldModel.DUDE_KEY));
+
+			world.addEntity(dude);
+			dude.scheduleActions(scheduler, world, imageStore);   }  
 
         scheduler.scheduleEvent(this,
-                createActivityAction(world, imageStore),
-                getActionPeriod());
+								createActivityAction(world, imageStore),
+								getActionPeriod());
     }
 
 

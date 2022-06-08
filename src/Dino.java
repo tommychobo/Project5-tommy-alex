@@ -17,6 +17,9 @@ public class Dino extends Mover {
 
 	@Override
 	public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler) {
+		if (e instanceof Dude) { // attack dude
+			((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);  
+		}
 		return false;
 	}
 
@@ -51,12 +54,19 @@ public class Dino extends Mover {
 
 		Optional<Entity> target = getPosition().findNearest(world, 4);
 
-		if (target.isPresent()) {
-			Point targetPos = target.get().getPosition();
+		if (!target.isPresent()
+			|| !moveTo(target.get(), world, scheduler)
+			|| !transform(world, scheduler, imageStore)) 
+			scheduler.scheduleEvent
+				(this,
+				 createActivityAction(scheduler, world, imageStore),
+				 getActionPeriod());
+	}
 
-			if (moveTo(target.get(), world, scheduler)) {
-				
-			}
-		}
+	public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler) {
+		if (e instanceof Dude)
+            ((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);
+
+		return true;
 	}
 }

@@ -52,6 +52,9 @@ public final class DudeFull extends Dude
     }
 
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
+		if (e instanceof Dino)
+			((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);   
+
         return true;
     }
 }

@@ -33,8 +33,7 @@ public final class DudeNotFull extends Dude
     }
 
 
-    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)
-    {
+    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)   {
         if (getResourceCount() >= getResourceLimit()) {
             DudeFull miner = Factory.createDudeFull(getId(),
                     getPosition(), getActionPeriod(),
@@ -47,17 +46,18 @@ public final class DudeNotFull extends Dude
 
             world.addEntity(miner);
             miner.scheduleActions(scheduler, world, imageStore);
-            return true;
-        }
+
+            return true;  }
 
         return false;
     }
 
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
-        if(e instanceof Healthy) {
-            setResourceCount(getResourceCount()+1);
-            ((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);
-        }
+        if(e instanceof Healthy) { 
+			if !(e instanceof Dino)  // only attack dino
+				setResourceCount(getResourceCount()+1);
+            ((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);   }
+		
         return true;
     }
 
