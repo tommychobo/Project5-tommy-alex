@@ -90,7 +90,6 @@ public class Factory {
 		 List<PImage> images,
 		 int actionPeriod,
 		 int animationPeriod,
-		 int health,
 		 int healthLimit) {
 		return new Dino
 			(id,
@@ -98,7 +97,7 @@ public class Factory {
 			 images,
 			 actionPeriod,
 			 animationPeriod,
-			 health,
+			 WorldModel.DINO_HEALTH,
 			 healthLimit); }
 
 	public static DinoMother createDinoMother

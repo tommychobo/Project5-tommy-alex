@@ -42,10 +42,13 @@ public final class Fairy extends Mover
 		if (fairyTargetDinoDude.isPresent() && moveTo(fairyTargetDinoDude.get(), world, scheduler)) {
 			Point tgtPos = fairyTargetDinoDude.get().getPosition();
 
-			// DudeNotFull dude = Factory.createDudeNotFull
-				// ("dude_" + getId(),
-				 // tgtPos,
-				 // imageStore.getImageList(WorldModel.DUDE_KEY));
+			DudeNotFull dude = Factory.createDudeNotFull
+				("dude_" + getId(),
+				 tgtPos,
+				 WorldModel.DUDE_ACTION_PERIOD,
+				 WorldModel.DUDE_ANIMATION_PERIOD,
+				 WorldModel.DUDE_HEALTH,
+				 imageStore.getImageList(WorldModel.DUDE_KEY));
 
 			world.addEntity(dude);
 			dude.scheduleActions(scheduler, world, imageStore);   }  

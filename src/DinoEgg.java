@@ -37,9 +37,9 @@ public class DinoEgg extends Healthy {
 				("dino_" + getId(),
 				 getPosition(),
 				 imageStore.getImageList(WorldModel.DINO_KEY),
-				 Functions.getNumFromRange(WorldModel.DINO_ACTION_MAX, WorldModel.DINO_ACTION_MIN),
-				 Functions.getNumFromRange(WorldModel.DINO_ANIMATION_MAX, WorldModel.DINO_ANIMATION_MIN),
-				 Functions.getNumFromRange(WorldModel.DINO_HEALTH_MAX, WorldModel.DINO_HEALTH_MIN));
+				 WorldModel.DINO_ACTION_PERIOD,
+				 WorldModel.DINO_ANIMATION_PERIOD,
+				 WorldModel.DINO_HEALTH);
 
 			world.removeEntity(this);
 			scheduler.unscheduleAllEvents(this);

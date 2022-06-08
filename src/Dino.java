@@ -57,16 +57,10 @@ public class Dino extends Mover {
 		if (!target.isPresent()
 			|| !moveTo(target.get(), world, scheduler)
 			|| !transform(world, scheduler, imageStore)) 
+
 			scheduler.scheduleEvent
 				(this,
-				 createActivityAction(scheduler, world, imageStore),
+				 createActivityAction(world, imageStore),
 				 getActionPeriod());
-	}
-
-	public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler) {
-		if (e instanceof Dude)
-            ((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);
-
-		return true;
 	}
 }

@@ -54,7 +54,7 @@ public final class DudeNotFull extends Dude
 
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
         if(e instanceof Healthy) { 
-			if !(e instanceof Dino)  // only attack dino
+			if (!(e instanceof Dino))  // only attack dino
 				setResourceCount(getResourceCount()+1);
             ((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);   }
 		
