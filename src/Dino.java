@@ -12,7 +12,8 @@ public class Dino extends Mover {
 		 int animationPeriod,
 		 int health,
 		 int healthLimit) {
-		super(id, position, images, actionPeriod, animationPeriod, health, healthLimit); }
+		super(id, position, images, actionPeriod, animationPeriod, health, healthLimit);
+	}
 
 	@Override
 	public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler) {

@@ -23,7 +23,14 @@ public class Factory {
 								  int health,
 								  List<PImage> images)
     {
-        return new Tree(id, position, images, actionPeriod, animationPeriod, health, 0);
+        return new Tree
+			(id,
+			 position,
+			 images,
+			 actionPeriod,
+			 animationPeriod,
+			 health,
+			 0);
     }
 
     public static Stump createStump(String id, Point position, List<PImage> images)
@@ -85,7 +92,14 @@ public class Factory {
 		 int animationPeriod,
 		 int health,
 		 int healthLimit) {
-		return new Dino(id, position, images, actionPeriod, animationPeriod, health, healthLimit); }
+		return new Dino
+			(id,
+			 position,
+			 images,
+			 actionPeriod,
+			 animationPeriod,
+			 health,
+			 healthLimit); }
 
 	public static DinoMother createDinoMother
 		(String id,

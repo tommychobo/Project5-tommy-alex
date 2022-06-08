@@ -79,6 +79,21 @@ public final class WorldModel
     public static final int TREE_HEALTH_MAX = 3;
     public static final int TREE_HEALTH_MIN = 1;
 
+	public static final String DINO_KEY = "dino";
+    public static final int DINO_NUM_PROPERTIES = 7;
+    public static final int DINO_ID = 1;
+    public static final int DINO_COL = 2;
+    public static final int DINO_ROW = 3;
+    public static final int DINO_ANIMATION_PERIOD = 4;
+    public static final int DINO_ACTION_PERIOD = 5;
+    public static final int DINO_HEALTH = 6;
+
+    public static final int DINO_ANIMATION_MAX = 600;
+    public static final int DINO_ANIMATION_MIN = 50;
+    public static final int DINO_ACTION_MAX = 1400;
+    public static final int DINO_ACTION_MIN = 1000;
+    public static final int DINO_HEALTH_MAX = 3;
+    public static final int DINO_HEALTH_MIN = 1;
 
 
 

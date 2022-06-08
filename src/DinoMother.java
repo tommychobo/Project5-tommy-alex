@@ -17,8 +17,8 @@ public class DinoMother extends Mover{
         infection.spread();
 
         scheduler.scheduleEvent(this,
-                createActivityAction(world, imageStore),
-                getActionPeriod());
+								createActivityAction(world, imageStore),
+								getActionPeriod());
     }
 
     @Override
