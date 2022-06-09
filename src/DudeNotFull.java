@@ -12,7 +12,7 @@ import java.util.Optional;
 public final class DudeNotFull extends Dude
 {
     public DudeNotFull(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount,
-                    int actionPeriod, int animationPeriod, int health, int healthLimit)
+					   int actionPeriod, int animationPeriod, int health, int healthLimit)
     {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod, health, healthLimit);
     }
@@ -21,37 +21,59 @@ public final class DudeNotFull extends Dude
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
         Optional<Entity> target =
-                getPosition().findNearest(world, 1);
+			getPosition().findNearest(world, 1);
 
-        if (!target.isPresent() || !moveTo(target.get(), world, scheduler)
-                || !transform(world, scheduler, imageStore))
-        {
+        if (target.isPresent() && moveTo(target.get(), world, scheduler))			
+			this.transform(world, scheduler, imageStore);
+        else 
             scheduler.scheduleEvent(this,
-                    createActivityAction(world, imageStore),
-                    getActionPeriod());
-        }
-    }
+									createActivityAction(world, imageStore),
+									getActionPeriod());
+	}
+
+    //     if (!target.isPresent() || !moveTo(target.get(), world, scheduler)
+	// 		|| !transform(world, scheduler, imageStore))
+	// 		{
+	// 			scheduler.scheduleEvent(this,
+	// 									createActivityAction(world, imageStore),
+	// 									getActionPeriod());
+	// 		}
 
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)   {
-        if (getResourceCount() >= getResourceLimit()) {
-            DudeFull miner = Factory.createDudeFull(getId(),
-                    getPosition(), getActionPeriod(),
-                    getAnimationPeriod(),
-                    getResourceLimit(),
-                    getImages());
 
-            world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this);
+		if (world.getInfection().isInfected(getPosition())) {
+			DinoDude dinodude = Factory.createDinoDude
+				("dinodude_" + getId(),
+				 getPosition(),
+				 imageStore.getImageList(WorldModel.DINODUDE_KEY, 32),
+				 WorldModel.DINODUDE_ACTION_PERIOD,
+				 WorldModel.DINODUDE_ANIMATION_PERIOD,
+				 WorldModel.DINODUDE_HEALTH);
 
-            world.addEntity(miner);
-            miner.scheduleActions(scheduler, world, imageStore);
+			world.removeEntity(this);
+			scheduler.unscheduleAllEvents(this);
 
-            return true;  }
+			world.addEntity(dinodude);
+			dinodude.scheduleActions(scheduler, world, imageStore); }
+			
+		else if (getResourceCount() >= getResourceLimit()) {
+				DudeFull miner = Factory.createDudeFull
+					(getId(),
+					 getPosition(), getActionPeriod(),
+					 getAnimationPeriod(),
+					 getResourceLimit(),
+					 getImages());
 
-        return false;
+				world.removeEntity(this);
+				scheduler.unscheduleAllEvents(this);
+
+				world.addEntity(miner);
+				miner.scheduleActions(scheduler, world, imageStore);  } }
+
+        return true;
     }
-
+	
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
         if(e instanceof Healthy) { 
 			if (!(e instanceof Dino))  // only attack dino

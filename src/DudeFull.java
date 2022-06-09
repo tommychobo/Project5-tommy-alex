@@ -22,11 +22,11 @@ public final class DudeFull extends Dude
     {
         Optional<Entity> fullTarget =
 			getPosition().findNearest(world, 3);
-        if (fullTarget.isPresent() && moveTo(fullTarget.get(), world, scheduler))
-			{
-				this.transform(world, scheduler, imageStore);
 
-			}
+        if (fullTarget.isPresent() && moveTo(fullTarget.get(), world, scheduler))			{
+			this.transform(world, scheduler, imageStore);
+			
+		}
         else {
             scheduler.scheduleEvent(this,
 									createActivityAction(world, imageStore),
@@ -34,19 +34,35 @@ public final class DudeFull extends Dude
         }
     }
 
-    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)
-    {
-        DudeNotFull miner = Factory.createDudeNotFull(getId(), //Changed to dudenotfull ??
-													  getPosition(), getActionPeriod(),
-													  getAnimationPeriod(),
-													  getResourceLimit(),
-													  getImages());
+    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)    {
+		if (world.getInfection().isInfected(getPosition())) {
+			DinoDude dinodude = Factory.createDinoDude
+				("dinodude_" + getId(),
+				 getPosition(),
+				 imageStore.getImageList(WorldModel.DINODUDE_KEY, 32),
+				 WorldModel.DINODUDE_ACTION_PERIOD,
+				 WorldModel.DINODUDE_ANIMATION_PERIOD,
+				 WorldModel.DINODUDE_HEALTH);
 
-        world.removeEntity(this);
-        scheduler.unscheduleAllEvents(this);
+			world.removeEntity(this);
+			scheduler.unscheduleAllEvents(this);
 
-        world.addEntity(miner);
-        miner.scheduleActions(scheduler, world, imageStore);
+			world.addEntity(dinodude);
+			dinodude.scheduleActions(scheduler, world, imageStore);}
+			
+		else {
+			DudeNotFull dude = Factory.createDudeNotFull
+				(getId(), //Changed to dudenotfull ??
+				 getPosition(), getActionPeriod(),
+				 getAnimationPeriod(),
+				 getResourceLimit(),
+				 getImages());		
+
+			world.removeEntity(this);
+			scheduler.unscheduleAllEvents(this);
+
+			world.addEntity(dude);
+			dude.scheduleActions(scheduler, world, imageStore);}
 
         return true;
     }
@@ -54,7 +70,7 @@ public final class DudeFull extends Dude
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
 		if (e instanceof Dino)
 			((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);   
-
+		
         return true;
     }
 }
