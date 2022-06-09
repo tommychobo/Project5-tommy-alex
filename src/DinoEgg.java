@@ -9,10 +9,9 @@ public class DinoEgg extends Healthy {
 		 Point position,
 		 List<PImage> images,
 		 int actionPeriod,
-		 int animationPeriod,
 		 int health,
 		 int healthLimit) {
-		super(id, position, images, actionPeriod, animationPeriod, health, healthLimit); }
+		super(id, position, images, actionPeriod, health, healthLimit); }
 
 	@Override
 	public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {

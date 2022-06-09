@@ -116,9 +116,7 @@ public class Factory {
 		 Point position,
 		 List<PImage> images,
 		 int actionPeriod,
-		 int animationPeriod,
-		 int health,
 		 int healthLimit) {
-		return new DinoEgg(id, position, images, actionPeriod, animationPeriod, health, healthLimit); }
+		return new DinoEgg(id, position, images, actionPeriod, 5, healthLimit); }
 
 }

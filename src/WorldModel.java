@@ -57,6 +57,11 @@ public final class WorldModel
     public static final int DINO_ACTION_PERIOD = 5;
     public static final int DINO_HEALTH = 6;
 
+	public static final int DINOMOTHER_STEPS = 6;
+	
+	public static final int DINOEGG_ACTION_PERIOD = 10;
+	public static final int DINOEGG_HEALTH = 20;
+	
     public static final String HOUSE_KEY = "house";
     public static final int HOUSE_NUM_PROPERTIES = 4;
     public static final int HOUSE_ID = 1;
