@@ -34,7 +34,7 @@ public final class SuperDude extends Dude {
 
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
         if (e instanceof Dino || e instanceof DinoMother)  
-            ((Healthy) e).setHealth(((Healthy) e).getHealth() - 1);
+            ((Healthy) e).setHealth(((Healthy) e).getHealth() - 3);
 
         return true;
     }

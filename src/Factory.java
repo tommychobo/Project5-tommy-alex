@@ -60,28 +60,43 @@ public class Factory {
     }
 
     // need resource count, though it always starts at 0
-    public static DudeNotFull createDudeNotFull(
-												String id,
-												Point position,
-												int actionPeriod,
-												int animationPeriod,
-												int resourceLimit,
-												List<PImage> images)
-    {
-        return new DudeNotFull(id, position, images, resourceLimit, 0,
-							   actionPeriod, animationPeriod, 0, 0);
-    }
+    public static DudeNotFull createDudeNotFull
+		(String id,
+		 Point position,
+		 int actionPeriod,
+		 int animationPeriod,
+		 int resourceLimit,
+		 List<PImage> images) {
+        return new DudeNotFull
+			(id,
+			 position,
+			 images,
+			 resourceLimit,
+			 0,
+			 actionPeriod,
+			 animationPeriod,
+			 WorldModel.DUDE_HEALTH,
+			 WorldModel.DUDE_HEALTH);
+	}
 
     // don't technically need resource count ... full
-    public static DudeFull createDudeFull(
-										  String id,
-										  Point position,
-										  int actionPeriod,
-										  int animationPeriod,
-										  int resourceLimit,
-										  List<PImage> images) {
-        return new DudeFull(id, position, images, resourceLimit, 0,
-							actionPeriod, animationPeriod, 0, 0);
+    public static DudeFull createDudeFull
+		(String id,
+		 Point position,
+		 int actionPeriod,
+		 int animationPeriod,
+		 int resourceLimit,
+		 List<PImage> images) {
+        return new DudeFull
+			(id,
+			 position,
+			 images,
+			 resourceLimit,
+			 0,
+			 actionPeriod,
+			 animationPeriod,
+			 WorldModel.DUDE_HEALTH,
+			 WorldModel.DUDE_HEALTH); 
     }
 
 	public static Dino createDino
@@ -98,7 +113,7 @@ public class Factory {
 			 actionPeriod,
 			 animationPeriod,
 			 WorldModel.DINO_HEALTH,
-			 healthLimit); }
+			 WorldModel.DINO_HEALTH); }
 
 	public static DinoMother createDinoMother
 		(String id,

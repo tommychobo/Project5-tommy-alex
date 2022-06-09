@@ -40,6 +40,11 @@ public final class DudeNotFull extends Dude
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)   {
 
+		if (getHealth() <= 0) {
+			world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);
+			return false; }
+		
 		if (world.getInfection().isInfected(getPosition())) {
 			SuperDude superdude = Factory.createSuperDude
 				("superdude_" + getId(),

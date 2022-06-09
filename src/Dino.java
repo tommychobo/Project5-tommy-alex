@@ -46,15 +46,17 @@ public class Dino extends Mover {
         return path.isEmpty() ? this.getPosition() : path.get(0);
 	}
 
-	public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-		return false;
-	}
+	public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {return false; }
 
 	public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
 
 		Optional<Entity> target = getPosition().findNearest(world, 4);
 
-		if (!target.isPresent()	||
+		if (getHealth() <= 0) {
+			world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);}
+
+		else if (!target.isPresent()	||
 			!moveTo(target.get(), world, scheduler)	||
 			!transform(world, scheduler, imageStore)) 
 
