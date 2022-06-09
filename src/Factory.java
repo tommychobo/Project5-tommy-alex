@@ -119,4 +119,19 @@ public class Factory {
 		 int healthLimit) {
 		return new DinoEgg(id, position, images, actionPeriod, 5, healthLimit); }
 
+	public static DinoDude createDinoDude
+		(String id,
+		 Point position,
+		 List<PImage> images,
+		 int actionPeriod,
+		 int animationPeriod,
+		 int healthLimit) {
+		return new DinoDude
+			(id,
+			 position,
+			 images,
+			 actionPeriod,
+			 animationPeriod,
+			 WorldModel.DUDE_HEALTH,
+			 healthLimit); }
 }
