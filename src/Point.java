@@ -67,7 +67,7 @@ public final class Point
 		  2 = stump
 		  3 = house
 		  4 = dude
-		  5 = dinodude
+		  5 = SuperDude
 		*/
         List<Entity> ofType = new LinkedList<>();
         for (Entity entity : world.getEntities()) {
@@ -92,7 +92,7 @@ public final class Point
 					ofType.add(entity);
 				break;
 			case 5:
-				if (entity instanceof DinoDude)
+				if (entity instanceof Dino)
 					ofType.add(entity);
             }
         }

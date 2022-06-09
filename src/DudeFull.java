@@ -37,19 +37,19 @@ public final class DudeFull extends Dude
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)    {
 
 		if (world.getInfection().isInfected(getPosition())) {
-			DinoDude dinodude = Factory.createDinoDude
-				("dinodude_" + getId(),
+			SuperDude superdude = Factory.createSuperDude
+				("superdude_" + getId(),
 				 getPosition(),
-				 imageStore.getImageList(WorldModel.DINODUDE_KEY, 32),
-				 WorldModel.DINODUDE_ACTION_PERIOD,
-				 WorldModel.DINODUDE_ANIMATION_PERIOD,
-				 WorldModel.DINODUDE_HEALTH);
+				 imageStore.getImageList(WorldModel.SUPERDUDE_KEY, 32),
+				 WorldModel.SUPERDUDE_ACTION_PERIOD,
+				 WorldModel.SUPERDUDE_ANIMATION_PERIOD,
+				 WorldModel.SUPERDUDE_HEALTH);
 
 			world.removeEntity(this);
 			scheduler.unscheduleAllEvents(this);
 
-			world.addEntity(dinodude);
-			dinodude.scheduleActions(scheduler, world, imageStore);}
+			world.addEntity(superdude);
+			superdude.scheduleActions(scheduler, world, imageStore);}
 			
 		else {
 			DudeNotFull dude = Factory.createDudeNotFull

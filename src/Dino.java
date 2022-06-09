@@ -54,9 +54,9 @@ public class Dino extends Mover {
 
 		Optional<Entity> target = getPosition().findNearest(world, 4);
 
-		if (!target.isPresent()
-			|| !moveTo(target.get(), world, scheduler)
-			|| !transform(world, scheduler, imageStore)) 
+		if (!target.isPresent()	||
+			!moveTo(target.get(), world, scheduler)	||
+			!transform(world, scheduler, imageStore)) 
 
 			scheduler.scheduleEvent
 				(this,

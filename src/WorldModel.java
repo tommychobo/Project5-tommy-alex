@@ -48,14 +48,14 @@ public final class WorldModel
     public static final int DUDE_ANIMATION_PERIOD = 6;
 	public static final int DUDE_HEALTH = 10;
 	
-	public static final String DINODUDE_KEY = "dinodude";
-    public static final int DINODUDE_NUM_PROPERTIES = 7;
-    public static final int DINODUDE_ID = 1;
-    public static final int DINODUDE_COL = 2;
-    public static final int DINODUDE_ROW = 3;
-    public static final int DINODUDE_ANIMATION_PERIOD = 4;
-    public static final int DINODUDE_ACTION_PERIOD = 5;
-    public static final int DINODUDE_HEALTH = 6;
+	public static final String SUPERDUDE_KEY = "superdude";
+    public static final int SUPERDUDE_NUM_PROPERTIES = 7;
+    public static final int SUPERDUDE_ID = 1;
+    public static final int SUPERDUDE_COL = 2;
+    public static final int SUPERDUDE_ROW = 3;
+    public static final int SUPERDUDE_ANIMATION_PERIOD = 4;
+    public static final int SUPERDUDE_ACTION_PERIOD = 300;
+    public static final int SUPERDUDE_HEALTH = 20;
 
 	public static final String DINO_KEY = "dino";
     public static final int DINO_NUM_PROPERTIES = 7;
@@ -63,7 +63,7 @@ public final class WorldModel
     public static final int DINO_COL = 2;
     public static final int DINO_ROW = 3;
     public static final int DINO_ANIMATION_PERIOD = 4;
-    public static final int DINO_ACTION_PERIOD = 5;
+    public static final int DINO_ACTION_PERIOD = 800;
     public static final int DINO_HEALTH = 6;
 	
 	public static final String DINOMOTHER_KEY = "dino_mother";

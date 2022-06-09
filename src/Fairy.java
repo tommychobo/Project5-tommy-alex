@@ -22,12 +22,8 @@ public final class Fairy extends Mover
         Optional<Entity> fairyTargetStump =
 			getPosition().findNearest(world, 2);
 
-        Optional<Entity> fairyTargetDinoDude =
-			getPosition().findNearest(world, 5); // target DinoDudes
-
-		// if(world.getInfection().isInfected(getPosition())){
-		// world.getInfection().uninfect(getPosition());
-        // }
+        // Optional<Entity> fairyTargetSuperDude =
+			// getPosition().findNearest(world, 5); // target SuperDudes
 
         if (fairyTargetStump.isPresent()) {
 			Point tgtPos = fairyTargetStump.get().getPosition();
@@ -39,23 +35,23 @@ public final class Fairy extends Mover
                 world.addEntity(sapling);
                 sapling.scheduleActions(scheduler, world, imageStore);   }    }
 
-		if (fairyTargetDinoDude.isPresent() && moveTo(fairyTargetDinoDude.get(), world, scheduler)) {
-			Point tgtPos = fairyTargetDinoDude.get().getPosition();
+		// if (fairyTargetSuperDude.isPresent() && moveTo(fairyTargetSuperDude.get(), world, scheduler)) {
+		// 	Point tgtPos = fairyTargetSuperDude.get().getPosition();
 
-			DudeNotFull dude = Factory.createDudeNotFull
-				("dude_" + getId(),
-				 tgtPos,
-				 WorldModel.DUDE_ACTION_PERIOD,
-				 WorldModel.DUDE_ANIMATION_PERIOD,
-				 WorldModel.DUDE_HEALTH,
-				 imageStore.getImageList(WorldModel.DUDE_KEY));
+		// 	DudeNotFull dude = Factory.createDudeNotFull
+		// 		("dude_" + getId(),
+		// 		 tgtPos,
+		// 		 WorldModel.DUDE_ACTION_PERIOD,
+		// 		 WorldModel.DUDE_ANIMATION_PERIOD,
+		// 		 WorldModel.DUDE_HEALTH,
+		// 		 imageStore.getImageList(WorldModel.DUDE_KEY));
 
-			world.addEntity(dude);
-			dude.scheduleActions(scheduler, world, imageStore);   }  
+		// 	world.addEntity(dude);
+		// 	dude.scheduleActions(scheduler, world, imageStore);   }  
 
-        scheduler.scheduleEvent(this,
-								createActivityAction(world, imageStore),
-								getActionPeriod());
+        // scheduler.scheduleEvent(this,
+		// 						createActivityAction(world, imageStore),
+		// 						getActionPeriod());
     }
 
 

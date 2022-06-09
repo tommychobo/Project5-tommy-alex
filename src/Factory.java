@@ -119,14 +119,14 @@ public class Factory {
 		 int healthLimit) {
 		return new DinoEgg(id, position, images, actionPeriod, 5, healthLimit); }
 
-	public static DinoDude createDinoDude
+	public static SuperDude createSuperDude
 		(String id,
 		 Point position,
 		 List<PImage> images,
 		 int actionPeriod,
 		 int animationPeriod,
 		 int healthLimit) {
-		return new DinoDude
+		return new SuperDude
 			(id,
 			 position,
 			 images,
