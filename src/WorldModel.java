@@ -66,7 +66,7 @@ public final class WorldModel
     public static final int DINO_ACTION_PERIOD = 5;
     public static final int DINO_HEALTH = 6;
 	
-	public static final String DINOMOTHER_KEY = "dinomother";
+	public static final String DINOMOTHER_KEY = "dino_mother";
     public static final int DINOMOTHER_NUM_PROPERTIES = 7;
     public static final int DINOMOTHER_ID = 1;
     public static final int DINOMOTHER_COL = 2;

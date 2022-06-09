@@ -18,27 +18,25 @@ public final class DudeNotFull extends Dude
     }
 
 
-    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
-    {
-        Optional<Entity> target =
-			getPosition().findNearest(world, 1);
+    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+		Optional<Entity> target =
+				getPosition().findNearest(world, 1);
 
-        if (target.isPresent() && moveTo(target.get(), world, scheduler))			
-			this.transform(world, scheduler, imageStore);
-        else 
-            scheduler.scheduleEvent(this,
-									createActivityAction(world, imageStore),
-									getActionPeriod());
+//        if (target.isPresent() && moveTo(target.get(), world, scheduler))
+//			this.transform(world, scheduler, imageStore);
+//        else
+//            scheduler.scheduleEvent(this,
+//									createActivityAction(world, imageStore),
+//									getActionPeriod());
+//	}
+
+		if (!target.isPresent() || !moveTo(target.get(), world, scheduler)
+				|| !transform(world, scheduler, imageStore)) {
+			scheduler.scheduleEvent(this,
+					createActivityAction(world, imageStore),
+					getActionPeriod());
+		}
 	}
-
-    //     if (!target.isPresent() || !moveTo(target.get(), world, scheduler)
-	// 		|| !transform(world, scheduler, imageStore))
-	// 		{
-	// 			scheduler.scheduleEvent(this,
-	// 									createActivityAction(world, imageStore),
-	// 									getActionPeriod());
-	// 		}
-
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)   {
 
@@ -73,8 +71,8 @@ public final class DudeNotFull extends Dude
 			world.addEntity(miner);
 			miner.scheduleActions(scheduler, world, imageStore);  
 
-			return true; }
-
+			return true;
+		}
 		return false;
     }
 	
