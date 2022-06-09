@@ -32,7 +32,7 @@ public class DinoMother extends Mover{
     public boolean moveTo(Entity e, WorldModel world, EventScheduler scheduler) {
 		numSteps++;
         Object[] positions = PathingStrategy.CARDINAL_NEIGHBORS.apply(this.getPosition())
-                .filter(world::withinBounds).filter(p -> !world.isOccupied(p)).toArray();
+                .filter(world::withinBounds).filter(p -> !world.isOccupied(p)).filter(p -> infection.isInfected(p)).toArray();
         if(positions.length > 0) {
             world.moveEntity(this, (Point) positions[(int) (Math.random() * positions.length)]);
         }
