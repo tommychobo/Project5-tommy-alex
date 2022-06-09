@@ -5,10 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * An entity that exists in the world. See EntityKind for the
- * different kinds of entities that exist.
- */
 public final class DudeFull extends Dude
 {
 
@@ -18,21 +14,14 @@ public final class DudeFull extends Dude
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod, health, healthLimit);
     }
 
-    public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
-    {
-        Optional<Entity> fullTarget = getPosition().findNearest(world, 3);
+    public boolean executeActivityHelper(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+        Optional<Entity> target = getPosition().findNearest(world, 3);
 
-		if (getHealth() <= 0) {
-			world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this); }
+		if (target.isPresent() && moveTo(target.get(), world, scheduler)) {
+			this.transform(world, scheduler, imageStore);
+			return true; }
 
-        else if (fullTarget.isPresent() && moveTo(fullTarget.get(), world, scheduler))			
-			this.transform(world, scheduler, imageStore);		
-		
-        else 
-            scheduler.scheduleEvent(this,
-									createActivityAction(world, imageStore),
-									getActionPeriod());
+		return false;
     }
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)    {

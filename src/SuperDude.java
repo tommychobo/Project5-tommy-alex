@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public final class SuperDude extends Dude {
+public final class SuperDude extends Mover {
 
 	public SuperDude
 		(String id,
@@ -14,11 +14,11 @@ public final class SuperDude extends Dude {
 		 int animationPeriod,
 		 int health,
 		 int healthLimit) {
-		super(id, position, images, 0, 0, actionPeriod, animationPeriod, health, healthLimit); }
+		super(id, position, images, actionPeriod, animationPeriod, health, healthLimit); }
 		
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)   {
 
-        Optional<Entity> target = getPosition().findNearest(world, 5);
+        Optional<Entity> target = getPosition().findNearest(world, 5);  // attack dinos
 
 		if (!target.isPresent()	||
 			!moveTo(target.get(), world, scheduler)	||
@@ -28,7 +28,6 @@ public final class SuperDude extends Dude {
 									createActivityAction(world, imageStore),
 									getActionPeriod());
     }
-
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
 		if (getHealth() <= 0) {
