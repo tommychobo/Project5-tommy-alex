@@ -81,4 +81,8 @@ public class DinoInfection {
         }
     }
 
+    public ImageStore getImageStore(){
+        return imageStore;
+    }
+
 }

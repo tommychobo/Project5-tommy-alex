@@ -1,6 +1,7 @@
 import processing.core.PImage;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DinoMother extends Mover{
     private DinoInfection infection;
@@ -15,9 +16,8 @@ public class DinoMother extends Mover{
 
     @Override
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-
         infection.spread();
-
+        moveTo(null, world, scheduler); //Random walk!
         scheduler.scheduleEvent(this,
 								createActivityAction(world, imageStore),
 								getActionPeriod());
@@ -29,17 +29,31 @@ public class DinoMother extends Mover{
     }
 
     @Override
-    public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler) {
+    public boolean moveTo(Entity e, WorldModel world, EventScheduler scheduler) {
 		numSteps++;
-
+        Object[] positions = PathingStrategy.CARDINAL_NEIGHBORS.apply(this.getPosition())
+                .filter(world::withinBounds).filter(p -> !world.isOccupied(p)).toArray();
+        if(positions.length > 0) {
+            world.moveEntity(this, (Point) positions[(int) (Math.random() * positions.length)]);
+        }
 		if (numSteps > WorldModel.DINOMOTHER_STEPS) {
-			DinoEgg egg = Factory.createDinoEgg
-				("egg_" + getId(),
-				 this.getPosition()+1,
-				 WorldModel.DINOEGG_ACTION_PERIOD,
-				 WorldModel.DINOEGG_HEALTH);
-			numSteps = 0;  }
-		
+            Object[] pts = PathingStrategy.CARDINAL_NEIGHBORS.apply(this.getPosition())
+                    .filter(world::withinBounds).filter(p -> !world.isOccupied(p)).toArray();
+            if (pts.length > 0) {
+                DinoEgg egg = Factory.createDinoEgg
+                        ("egg_" + getId(), (Point) pts[0], infection.getImageStore().getImageList(WorldModel.DINO_KEY),
+                                WorldModel.DINOEGG_ACTION_PERIOD,
+                                WorldModel.DINOEGG_HEALTH);
+                world.addEntity(egg);
+                egg.scheduleActions(scheduler, world, infection.getImageStore());
+                numSteps = 0;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
         return false;
     }
 }

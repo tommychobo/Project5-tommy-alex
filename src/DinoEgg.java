@@ -11,7 +11,7 @@ public class DinoEgg extends Healthy {
 		 int actionPeriod,
 		 int health,
 		 int healthLimit) {
-		super(id, position, images, actionPeriod, health, healthLimit); }
+		super(id, position, images, actionPeriod, 0, health, healthLimit); }
 
 	@Override
 	public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
