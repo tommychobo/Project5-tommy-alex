@@ -41,7 +41,7 @@ public class DinoMother extends Mover{
                     .filter(world::withinBounds).filter(p -> !world.isOccupied(p)).toArray();
             if (pts.length > 0) {
                 DinoEgg egg = Factory.createDinoEgg
-                        ("egg_" + getId(), (Point) pts[0], infection.getImageStore().getImageList(WorldModel.DINO_KEY),
+                        ("egg_" + getId(), (Point) pts[0], infection.getImageStore().getImageList(WorldModel.DINOEGG_KEY, 32),
                                 WorldModel.DINOEGG_ACTION_PERIOD,
                                 WorldModel.DINOEGG_HEALTH);
                 world.addEntity(egg);

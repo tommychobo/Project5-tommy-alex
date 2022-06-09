@@ -35,7 +35,7 @@ public class DinoEgg extends Healthy {
 			Dino dino = Factory.createDino
 				("dino_" + getId(),
 				 getPosition(),
-				 imageStore.getImageList(WorldModel.DINO_KEY),
+				 imageStore.getImageList(WorldModel.DINO_KEY, 32),
 				 WorldModel.DINO_ACTION_PERIOD,
 				 WorldModel.DINO_ANIMATION_PERIOD,
 				 WorldModel.DINO_HEALTH);
