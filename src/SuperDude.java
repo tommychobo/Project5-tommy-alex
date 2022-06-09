@@ -30,7 +30,13 @@ public final class SuperDude extends Dude {
     }
 
 
-    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {return false; }
+    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+		if (getHealth() <= 0) {
+			world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);}
+
+		return false;
+	}
 
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
         if (e instanceof Dino || e instanceof DinoMother)  

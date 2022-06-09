@@ -20,26 +20,22 @@ public final class DudeFull extends Dude
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-        Optional<Entity> fullTarget =
-			getPosition().findNearest(world, 3);
-
-        if (fullTarget.isPresent() && moveTo(fullTarget.get(), world, scheduler))			{
-			this.transform(world, scheduler, imageStore);
-			
-		}
-        else {
-            scheduler.scheduleEvent(this,
-									createActivityAction(world, imageStore),
-									getActionPeriod());
-        }
-    }
-
-    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)    {
+        Optional<Entity> fullTarget = getPosition().findNearest(world, 3);
 
 		if (getHealth() <= 0) {
 			world.removeEntity(this);
-            scheduler.unscheduleAllEvents(this);
-			return false; }
+            scheduler.unscheduleAllEvents(this); }
+
+        else if (fullTarget.isPresent() && moveTo(fullTarget.get(), world, scheduler))			
+			this.transform(world, scheduler, imageStore);		
+		
+        else 
+            scheduler.scheduleEvent(this,
+									createActivityAction(world, imageStore),
+									getActionPeriod());
+    }
+
+    public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)    {
 
 		if (world.getInfection().isInfected(getPosition())) {
 			SuperDude superdude = Factory.createSuperDude
