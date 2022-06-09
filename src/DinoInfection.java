@@ -22,8 +22,9 @@ public class DinoInfection {
 
     public void motherDinoInfection(EventScheduler scheduler, Point pressed){
         DinoMother mom = new DinoMother("dino_mother_"+pressed.x+"_"+pressed.y, pressed,
-                imageStore.getImageList("dino_mother", 32),
-                20, 15, 8, 8, this);
+                imageStore.getImageList(WorldModel.DINOMOTHER_KEY, 32),
+                WorldModel.DINOMOTHER_ACTION_PERIOD, WorldModel.DINOMOTHER_ANIMATION_PERIOD,
+                8, 8, this);
         infect(pressed);
         for(int i = 1; i < INITIAL_INFECTION; i++){
             spread();
