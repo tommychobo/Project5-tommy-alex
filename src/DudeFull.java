@@ -35,6 +35,7 @@ public final class DudeFull extends Dude
     }
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore)    {
+
 		if (world.getInfection().isInfected(getPosition())) {
 			DinoDude dinodude = Factory.createDinoDude
 				("dinodude_" + getId(),

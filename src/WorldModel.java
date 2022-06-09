@@ -57,7 +57,24 @@ public final class WorldModel
     public static final int DINODUDE_ACTION_PERIOD = 5;
     public static final int DINODUDE_HEALTH = 6;
 
-	public static final int DINOMOTHER_STEPS = 6;
+	public static final String DINO_KEY = "dino";
+    public static final int DINO_NUM_PROPERTIES = 7;
+    public static final int DINO_ID = 1;
+    public static final int DINO_COL = 2;
+    public static final int DINO_ROW = 3;
+    public static final int DINO_ANIMATION_PERIOD = 4;
+    public static final int DINO_ACTION_PERIOD = 5;
+    public static final int DINO_HEALTH = 6;
+	
+	public static final String DINOMOTHER_KEY = "dinomother";
+    public static final int DINOMOTHER_NUM_PROPERTIES = 7;
+    public static final int DINOMOTHER_ID = 1;
+    public static final int DINOMOTHER_COL = 2;
+    public static final int DINOMOTHER_ROW = 3;
+    public static final int DINOMOTHER_ANIMATION_PERIOD = 4;
+    public static final int DINOMOTHER_ACTION_PERIOD = 5;
+    public static final int DINOMOTHER_HEALTH = 6;
+	public static final int DINOMOTHER_STEPS = 6; // steps before laying egg
 
     public static final String DINOEGG_KEY = "dino_egg";
 	public static final int DINOEGG_ACTION_PERIOD = 10;

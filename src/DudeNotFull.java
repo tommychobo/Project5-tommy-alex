@@ -55,23 +55,27 @@ public final class DudeNotFull extends Dude
 			scheduler.unscheduleAllEvents(this);
 
 			world.addEntity(dinodude);
-			dinodude.scheduleActions(scheduler, world, imageStore); }
+			dinodude.scheduleActions(scheduler, world, imageStore);
+
+			return true; }
 			
-		else if (getResourceCount() >= getResourceLimit()) {
-				DudeFull miner = Factory.createDudeFull
-					(getId(),
-					 getPosition(), getActionPeriod(),
-					 getAnimationPeriod(),
-					 getResourceLimit(),
-					 getImages());
+		if (getResourceCount() >= getResourceLimit()) {
+			DudeFull miner = Factory.createDudeFull
+				(getId(),
+				 getPosition(), getActionPeriod(),
+				 getAnimationPeriod(),
+				 getResourceLimit(),
+				 getImages());
 
-				world.removeEntity(this);
-				scheduler.unscheduleAllEvents(this);
+			world.removeEntity(this);
+			scheduler.unscheduleAllEvents(this);
 
-				world.addEntity(miner);
-				miner.scheduleActions(scheduler, world, imageStore);  } }
+			world.addEntity(miner);
+			miner.scheduleActions(scheduler, world, imageStore);  
 
-        return true;
+			return true; }
+
+		return false;
     }
 	
     public boolean _moveToHelper(Entity e, WorldModel world, EventScheduler scheduler){
