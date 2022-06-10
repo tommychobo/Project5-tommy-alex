@@ -21,6 +21,10 @@ public class DinoMother extends Mover{
         scheduler.scheduleEvent(this,
 								createActivityAction(world, imageStore),
 								getActionPeriod());
+
+        if (getHealth() <= 0) {
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);}
     }
 
     @Override

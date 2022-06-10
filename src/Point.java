@@ -67,7 +67,7 @@ public final class Point
 		  2 = stump
 		  3 = house
 		  4 = dude
-		  5 = SuperDude
+		  5 = dino
 		*/
         List<Entity> ofType = new LinkedList<>();
         for (Entity entity : world.getEntities()) {
@@ -92,8 +92,9 @@ public final class Point
 					ofType.add(entity);
 				break;
 			case 5:
-				if (entity instanceof Dino)
+				if (entity instanceof Dino || entity instanceof DinoMother)
 					ofType.add(entity);
+                break;
             }
         }
         return nearestEntity(ofType);

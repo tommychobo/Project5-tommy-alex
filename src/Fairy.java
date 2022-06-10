@@ -21,7 +21,6 @@ public final class Fairy extends Mover
     {
         Optional<Entity> fairyTargetStump =
 			getPosition().findNearest(world, 2);
-
         // Optional<Entity> fairyTargetSuperDude =
 			// getPosition().findNearest(world, 5); // target SuperDudes
 
@@ -49,9 +48,9 @@ public final class Fairy extends Mover
 		// 	world.addEntity(dude);
 		// 	dude.scheduleActions(scheduler, world, imageStore);   }  
 
-        // scheduler.scheduleEvent(this,
-		// 						createActivityAction(world, imageStore),
-		// 						getActionPeriod());
+         scheduler.scheduleEvent(this,
+		 						createActivityAction(world, imageStore),
+		 						getActionPeriod());
     }
 
 

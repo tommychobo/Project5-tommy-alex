@@ -31,7 +31,7 @@ class AStarPathingStrategy
                     openList.add(new Node(cur, ((Point)o), manhattanDist(((Point)o), end)));
                 }
             }
-            if(openList.isEmpty() || safety > 1000)
+            if(openList.isEmpty() || safety > 4000)
                 return new ArrayList<>();
             safety++;
         }

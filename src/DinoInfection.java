@@ -24,7 +24,7 @@ public class DinoInfection {
         DinoMother mom = new DinoMother("dino_mother_"+pressed.x+"_"+pressed.y, pressed,
                 imageStore.getImageList(WorldModel.DINOMOTHER_KEY, 32),
                 WorldModel.DINOMOTHER_ACTION_PERIOD, WorldModel.DINOMOTHER_ANIMATION_PERIOD,
-                8, 8, this);
+                WorldModel.DINOMOTHER_HEALTH, WorldModel.DINOMOTHER_HEALTH, this);
         infect(pressed);
         for(int i = 1; i < INITIAL_INFECTION; i++){
             spread();
